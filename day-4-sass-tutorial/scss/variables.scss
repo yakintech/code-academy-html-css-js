@@ -1,0 +1,15 @@
+@use "sass:math" as math;
+
+$myColor : tomato;
+$primaryColor : #E7E9EB;
+$myFontSize: 18px;
+
+
+.main{
+    background-color: $myColor;
+}
+
+
+
+@debug math.$pi;
+@debug "Hello Scss";

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: grid;
+            grid-template-columns: auto auto auto;
+           
+        }
+        .box{
+            padding: 35px;
+            border-style: solid;
+            background-color: chocolate;
+        }
+        .box1{
+            grid-column: 1 / 3;
+        }
+        .box2{
+            grid-row: 1 / 3;
+            grid-column: 3;
+        }
+ 
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box box1">A</div>
+        <div class="box box2">B</div>
+        <div class="box box3">C</div>
+        <div class="box box4">D</div>
+    </div>
+    
+</body>
+</html>

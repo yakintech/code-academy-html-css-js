@@ -1,0 +1,1 @@
+https://sass-lang.com/documentation/at-rules/extend#extends-or-mixins

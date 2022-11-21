@@ -1,0 +1,38 @@
+$theme-colors: (
+   "primary" : #626ED4,
+   "secondary" : #343549,
+   "success": #2AA39A,
+   "danger": #EC4561,
+   "warning": #F8B425,
+   "info": #38A5F8,
+   "light": #f8f8fa,
+   "dark": #575c62,
+   "muted": #EDECF1
+);
+
+.btn{
+    display: inline-block;
+  
+    padding: .375rem .75rem;
+   
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5;
+   
+    border: 1px solid transparent;
+    border-radius: .25rem;
+  
+    color: #212529;
+    background-color: transparent;
+    &:hover{
+        cursor: pointer;
+    }  
+ }
+
+
+ @each $name,$color in $theme-colors {
+    .btn-#{$name}{
+        background-color: $color;
+        color: white;
+    }
+ }

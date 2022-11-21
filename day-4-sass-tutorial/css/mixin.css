@@ -1,0 +1,26 @@
+.container {
+  padding: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/*# sourceMappingURL=mixin.css.map */
