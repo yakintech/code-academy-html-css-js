@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="title">Hello DOM</h1>
+    <h2>Azerbaycan</h2>
+    <h2>Türkiye</h2>
+
+    <span>Çağatay</span>
+    <span>İsa</span>
+
+</body>
+<script>
+
+    let h1Element = document.getElementById('title');
+    console.log('h1element ', h1Element);
+
+    let h2Element = document.querySelector('h2');
+    console.log('h2Element ', h2Element);
+
+    let h2Elements = document.querySelectorAll('h2');
+    console.log('h2Elements ', h2Elements);
+
+
+    h1Element.style.color = "tomato";
+
+
+    let spanElements = document.getElementsByTagName('span');
+    console.log('Span Elements ', spanElements);
+
+    
+
+</script>
+
+</html>
