@@ -23,17 +23,29 @@
 <script>
     let cityNameInput = document.getElementById('name');
 
-    
+
     function add() {
         let cityName = cityNameInput.value;
 
         let liElement = document.createElement('li');
         liElement.innerText = cityName;
 
+        liElement.addEventListener('click', function(){
+            alert(liElement.innerText)
+        })
+
         document.querySelector('ul').appendChild(liElement);
 
         cityNameInput.value = '';
     }
+
+
+    document.querySelectorAll('li').forEach(element => {
+        element.addEventListener('click', function(){
+            alert(element.innerText)
+        })
+    })
+
 </script>
 
 </html>
