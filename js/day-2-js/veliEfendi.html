@@ -20,6 +20,15 @@
             top: 0;
             left: 990px;
         }
+
+        body {
+            margin: 0px;
+            background-color: rgb(74, 107, 25);
+        }
+
+        hr {
+            border: 0;
+        }
     </style>
 </head>
 
@@ -30,16 +39,32 @@
     </div>
 
     <div>
-        <img id="horse2" src="https://pyxis.nymag.com/v1/imgs/ad5/71e/23f27547e558b9f008663caa108e96384e-nope-edward-muybridge.2x.rsocial.w600.gif"
+        <img id="horse2"
+            src="https://pyxis.nymag.com/v1/imgs/ad5/71e/23f27547e558b9f008663caa108e96384e-nope-edward-muybridge.2x.rsocial.w600.gif"
             alt="">
     </div>
 
     <div>
-        <img id="horse3"  src="https://www.animalife.co.uk/wp-content/uploads/2021/07/Thoroughbred1-1.jpg" alt="">
+        <img id="horse3" src="https://www.animalife.co.uk/wp-content/uploads/2021/07/Thoroughbred1-1.jpg" alt="">
     </div>
 
     <div>
         <button id="start">Start</button>
+    </div>
+    <div>
+        <select id="horses">
+            <option value="0">Seçiniz</option>
+            <option value="horse1">Horse 1</option>
+            <option value="horse2">Horse 2</option>
+            <option value="horse3">Horse 3</option>
+        </select>
+        <label for="">Amount:</label>
+        <input type="text" id="amount" />
+        <button id="deposit">Deposit</button>
+    </div>
+    <div>
+        <h3>Wallet: <h3 id="wallet">0</h3>
+        </h3>
     </div>
 
     <hr>
@@ -47,9 +72,91 @@
 </body>
 <script>
 
-    document.getElementById('start').addEventListener('click', function () {
+    let horse1 = document.getElementById('horse1');
+    let horse2 = document.getElementById('horse2');
+    let horse3 = document.getElementById('horse3');
+    let startButton = document.getElementById('start');
+    let depositButton = document.getElementById('deposit');
+    let horsesSelect = document.getElementById('horses');
+    let amountInput = document.getElementById('amount');
+    let walleth3 = document.getElementById('wallet')
+
+    let walletAmount = 0;
+    let gameAmount = 0;
+    let selectedHorse;
+
+    const finish = 785;
+
+    let interval;
+    startButton.addEventListener('click', function () {
+
+        startButton.setAttribute("disabled", "true")
+        depositButton.setAttribute("disabled", "true")
+        let left1 = 0;
+        let left2 = 0;
+        let left3 = 0;
+
+        interval = setInterval(() => {
+
+            let randomNumber1 = Math.floor(Math.random() * 500);
+            let randomNumber2 = Math.floor(Math.random() * 100);
+            let randomNumber3 = Math.floor(Math.random() * 100);
+
+            left1 = left1 + randomNumber1;
+            left2 = left2 + randomNumber2;
+            left3 = left3 + randomNumber3;
+
+            horse1.style.marginLeft = left1 + "px";
+            horse2.style.marginLeft = left2 + "px";
+            horse3.style.marginLeft = left3 + "px";
+
+            if (left1 > finish) {
+                finishRace('horse1')
+            }
+            else if (left2 > finish) {
+                finishRace('horse2')
+
+            }
+            else if (left3 > finish) {
+                finishRace('horse3')
+
+            }
+
+        }, 300);
 
     })
+
+
+    function finishRace(winner) {
+        console.log(winner);
+        clearInterval(interval);
+        startButton.removeAttribute("disabled");
+        depositButton.removeAttribute("disabled");
+
+
+        if (winner == selectedHorse) {
+            alert('KAZANDINIZ!!' + gameAmount * 2);
+            walletAmount = walletAmount + (gameAmount * 2);
+            walleth3.innerText = walletAmount.toFixed(2)
+        }
+
+        gameAmount = 0;
+    }
+
+
+    depositButton.addEventListener('click', function () {
+
+        selectedHorse = horsesSelect.value;
+        let amountValue = Number(amountInput.value);
+
+        if (selectedHorse != '0' && !isNaN(amountValue)) {
+            gameAmount = amountValue;
+            alert('Deposit OK!')
+        }
+
+
+    })
+
 
 </script>
 

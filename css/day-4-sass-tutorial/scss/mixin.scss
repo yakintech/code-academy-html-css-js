@@ -1,0 +1,31 @@
+@mixin flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flexSample($content:center, $align:center) {
+    display: flex;
+    justify-content: $content;
+    align-items: $align;
+}
+
+
+
+.container{
+    padding: 5%;
+    @include flexCenter;
+}
+
+.main{
+    @include flexSample
+}
+
+.main2{
+    @include flexSample(space-between, center)
+}
+
+.main3{
+    @include flexSample(space-between)
+}
+

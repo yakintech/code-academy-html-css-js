@@ -1,0 +1,61 @@
+.btn {
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  color: #212529;
+  background-color: transparent;
+}
+.btn:hover {
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #626ED4;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #343549;
+  color: white;
+}
+
+.btn-success {
+  background-color: #2AA39A;
+  color: white;
+}
+
+.btn-danger {
+  background-color: #EC4561;
+  color: white;
+}
+
+.btn-warning {
+  background-color: #F8B425;
+  color: white;
+}
+
+.btn-info {
+  background-color: #38A5F8;
+  color: white;
+}
+
+.btn-light {
+  background-color: #f8f8fa;
+  color: white;
+}
+
+.btn-dark {
+  background-color: #575c62;
+  color: white;
+}
+
+.btn-muted {
+  background-color: #EDECF1;
+  color: white;
+}
+
+/*# sourceMappingURL=eachSample.css.map */

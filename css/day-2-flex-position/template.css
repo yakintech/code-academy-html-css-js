@@ -1,0 +1,36 @@
+.container{
+    display: flex;
+}
+
+img{
+    width: 144px;
+    height: 144px;
+    border: 0.5rem solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+
+.leftmenu{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background-color: #BD5D38;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.content{
+    flex-grow: 5;
+}
+
+ul{
+    text-align: center;
+}
+
+a{
+    color: #E1B6A5;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 16px;
+    text-decoration: none;
+}

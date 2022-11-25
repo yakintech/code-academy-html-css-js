@@ -1,0 +1,12 @@
+Live Server Ext 
+ritwickdey.LiveServer
+
+User Agent Style Sheet
+
+
+css selectors
+https://code.tutsplus.com/tutorials/the-30-css-selectors-you-must-memorize--net-16048
+
+
+https://www.youtube.com/watch?v=OaEtW_CSaPk
+

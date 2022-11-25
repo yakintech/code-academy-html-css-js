@@ -1,0 +1,11 @@
+.header-title {
+  font-size: 2rem;
+}
+@media (max-width: 599px) {
+  .header-title {
+    font-size: 1rem;
+    background-color: red;
+  }
+}
+
+/*# sourceMappingURL=responsiveMixin.css.map */
