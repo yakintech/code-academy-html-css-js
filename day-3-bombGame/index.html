@@ -28,8 +28,6 @@
 <script>
     let containerDiv = document.getElementById('container');
     let pointsSpan = document.getElementById('points');
-    let bombs = [];
-
 
     function start() {
 
@@ -37,17 +35,10 @@
         pointsSpan.innerHTML = point;
         containerDiv.innerHTML = "";
 
+        let bombs = [];
         for (let i = 1; i <= 5; i++) {
 
-            let randomBomb;
-            if (i != 1) {
-                randomBomb = getRandomInt((i * 5), (i * 5));
-            }
-            else {
-                randomBomb = getRandomInt(1, 5);
-            }
-
-
+            let randomBomb = Math.ceil(Math.random() * 25);
 
             if (bombs.includes(randomBomb)) {
                 i--;
@@ -94,11 +85,6 @@
     }
 
 
-    function getRandomInt(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
 
 
 
