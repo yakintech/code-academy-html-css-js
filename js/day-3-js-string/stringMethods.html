@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            margin-left: 20px;
+            font-size: 20px;
+            font-weight: 800;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <label for="">Upper Case</label>
+        <input type="text" id="upper" />
+        <button onclick="upperCase()">to Upper Case</button>
+        <span id="upperOutput">0</span>
+    </div>
+    <div>
+        <label for="">First Name</label>
+        <input type="text" id="firstName" />
+        <label for="">Last Name</label>
+        <input type="text" id="lastName" />
+        <button onclick="showFullName()">Result</button>
+        <label id="fullNameOutput">0</label>
+    </div>
+
+</body>
+<script>
+    let upperInput = document.getElementById('upper');
+    let upperOutput = document.getElementById('upperOutput');
+
+    let firstNameInput = document.getElementById('firstName');
+    let lastNameInput = document.getElementById('lastName');
+    let fullNameOutput = document.getElementById('fullNameOutput');
+
+
+    function upperCase() {
+        let inputValue = upperInput.value;
+        upperOutput.innerText = inputValue.toUpperCase();
+    }
+
+    //Trim metodu
+    //örneğin " çağatay" datasını leftten trimliyorum.
+
+    let name = "   çağatay";
+    let trimName = name.trim();
+    //trimStart ve trimEnd
+
+    //Telefon numarsındaki + işaretini SİL
+    let phoneNumber = "+905437331470";;
+    let newPhoneNumber = phoneNumber.replace('+', '')
+
+    //Telefon numarasındaki + yerine "00" koy
+    let newPhoneNumber2 = phoneNumber.replace('+', '00')
+
+    let firstName = "Çağatay";
+
+    //firstName deki tüm a harflerini w ile değiştir
+    let firstNameResult = firstName.replaceAll('a', 'w')
+
+
+    //Aşağıdaki ülke adından sadece CAN kalsın
+    let country = "Azerbaycan";
+
+    //let newCountry = country[7] + country[8]  + country[9] 
+    //Önce c harfili yakalıyorum!!
+    let cIndex = country.indexOf('c');
+    let newCountry = country.substr(cIndex);
+
+
+    function showFullName() {
+        //Sonuç Çağatay Yıldız yazmalı. Ne olursa olsun ilk harfler büyük aralarında boşluk ve diğer harfler küçük olmalı.
+
+        let firstName = firstNameInput.value[0].toUpperCase() + firstNameInput.value.substr(1).toLowerCase();
+
+        let lastName = lastNameInput.value[0].toUpperCase() + lastNameInput.value.substr(1).toLowerCase();
+
+        let fullName = firstName + " " + lastName;
+        console.log('full name: ', fullName);
+    }
+
+
+    let names = "Çağatay, İsa, Gülşen, Star Wars, Tahir, Zeynep";
+    let nameArray = names.split(',');
+
+
+    //includes 
+    let data = `Vivamus suscipit tortor eget felis porttitor volutpat. Nulla porttitor accumsan tincidunt. Türkiye
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
+
+Quisque velit nisi, pretium ut lacinia in, elementum id enim. Cras ultricies ligula sed magna dictum porta.`
+
+    //datanın içerisinde Türkiye var mı??
+    let control = data.includes('Vivamus');
+    let control2 = data.startsWith('mu')
+
+    let text = "Hello world, welcome to the universe.";
+    let textResult = text.startsWith("Helloo");
+
+
+</script>
+
+</html>

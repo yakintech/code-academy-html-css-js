@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            display: grid;
+            width: 80%;
+            justify-content: center;
+            grid-template-columns: auto auto auto auto auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button onclick="start()">Start!</button>
+    <h1>Points: <span id="points">0</span></h1>
+    <div id="container">
+
+    </div>
+
+</body>
+<script>
+    let containerDiv = document.getElementById('container');
+    let pointsSpan = document.getElementById('points');
+    let bombs = [];
+
+
+    function start() {
+
+        let point = 0;
+        pointsSpan.innerHTML = point;
+        containerDiv.innerHTML = "";
+
+        for (let i = 1; i <= 5; i++) {
+
+            let randomBomb;
+            if (i != 1) {
+                randomBomb = getRandomInt((i * 5), (i * 5));
+            }
+            else {
+                randomBomb = getRandomInt(1, 5);
+            }
+
+
+
+            if (bombs.includes(randomBomb)) {
+                i--;
+            }
+            else {
+                bombs.push(randomBomb);
+            }
+        }
+
+
+
+        for (let i = 1; i <= 25; i++) {
+
+            let button = document.createElement('button');
+            button.style.width = "100px";
+            button.style.height = "100px";
+            button.style.backgroundColor = 'blue'
+            button.setAttribute('id', i);
+
+            button.addEventListener('click', function (e) {
+
+                if (bombs.includes(Number(e.target.id))) {
+                    let buttons = document.querySelectorAll('#container button')
+
+                    buttons.forEach(element => {
+                        if (bombs.includes(Number(element.id))) {
+                            element.style.backgroundColor = 'red';
+                        }
+                    })
+
+                    e.target.style.backgroundColor = "red";
+                }
+                else {
+                    e.target.style.backgroundColor = "aqua";
+                    point = point + 10;
+                    pointsSpan.innerHTML = point;
+                }
+            })
+
+            containerDiv.appendChild(button);
+        }
+
+
+    }
+
+
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+
+
+</script>
+
+</html>
