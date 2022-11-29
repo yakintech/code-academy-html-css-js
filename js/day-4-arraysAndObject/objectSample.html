@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let user = {
+        name: 'Çağatay',
+        surname: 'Yıldız'
+    }
+
+    let webuser = new Object();
+    webuser.name = "Çağatay";
+    webuser.surname = "Yıldız";
+
+    let product = {
+        name: 'IPhone',
+        price: 2000,
+        points: [3, 4, 5, 5, 5],
+        category: {
+            name: "Electronic",
+            description: "Electronic products..."
+        },
+        calcTax : function(tax){
+            return tax * 1.18
+        }
+    }
+
+    // console.log(product.name);
+    // console.log(product['name']);
+
+
+    
+    let category = {
+        name : 'Electronic',
+        description : "Electronic products..."
+    }
+
+    let category2 = category;
+    category2.name = 'Sport';
+
+    console.log('category.name ', category.name);
+    console.log('category2.name ', category2.name);
+
+
+
+
+
+</script>
+
+</html>
