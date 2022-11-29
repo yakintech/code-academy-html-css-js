@@ -977,12 +977,27 @@
     ]
 
 
-    //En pahalı ürün
-    //En ucuz ürün
-    //Ürünlerimin ortalama fiyatı nedir?
-    //stok miktarı 10 un altında olan kaç adet ürün var?
-    //isminde x geçen kaç ürünüm var?
-    
+    //1. En pahalı ürün
+    //2. En ucuz ürün
+
+
+    //3. Ürünlerimin ortalama fiyatı nedir?
+    let totalPrice = 0;
+    originalProducts.forEach(item => {
+        totalPrice = totalPrice + item.unitPrice;
+    });
+    let result3 = totalPrice / originalProducts.length;
+
+
+
+    //4. Stok miktarı 10 un altında olan kaç adet ürün var?
+    let filteredProducts = originalProducts.filter(q => q.unitsInStock < 10);
+    let result4 = filteredProducts.length;
+
+    //5. İsminde x geçen kaç ürünüm var?
+    let filteredProducts2 = originalProducts.filter(q => q.name.toLocaleLowerCase().includes('x'));
+    let result5 = filteredProducts2.length;
+
 
 </script>
 </html>
