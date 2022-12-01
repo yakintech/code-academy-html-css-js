@@ -29554,12 +29554,23 @@
             //1996-08-01 00:00:00.000
             //Moment to Date
             let momentResult = moment(element.orderDate, 'YYYY-MM-DD').toDate();
-            console.log("YEAR ", momentResult.getFullYear())
+           // console.log("YEAR ", momentResult.getFullYear())
 
     });
 
 
     //1997 yılında kaç adet sipariş verilmiştir
+
+    let counter = 0;
+    orders.forEach(element => {
+        let year = moment(element.orderDate, 'YYYY-MM-DD').toDate().getFullYear();
+
+        if(year == 1997){
+            counter++;
+        }
+    });
+
+    console.log('Counter ', counter);
 
 
 </script>
