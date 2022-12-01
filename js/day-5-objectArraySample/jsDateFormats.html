@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+</head>
+
+<body>
+
+</body>
+<script>
+    const date = new Date();
+
+    const customDate = new Date(2022, 1, 22, 18, 18, 11);
+
+    const customDate2 = new Date('2022-03-25')
+
+    //01.12.2022
+    //12/01/2022
+
+
+    let orderDate = "1997-01-22 00:00:00.000";
+
+    let order = new Date(orderDate);
+
+    let momentResult = moment('1997-01-22', 'YYYY-MM-DD').toDate();
+
+    let year = momentResult.getYear();
+    let month = momentResult.getMonth();
+    let day = momentResult.getDay();
+
+
+    let momentResult2 = moment('1997-01-22', 'YYYY-MM-DD').add(1, 'y').toString();
+
+
+</script>
+
+</html>

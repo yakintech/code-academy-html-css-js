@@ -21,6 +21,12 @@
 
 <body style="padding:5%">
 
+    <div>
+        <label>Search: </label>
+        <input type="text" id="search" />
+        <button class="w3-button w3-aqua" onclick="searchByName()">Search</button>
+    </div>
+
     <table class="w3-table w3-striped w3-border">
         <thead>
             <tr>
@@ -44,6 +50,7 @@
 
     let tbody = document.querySelector('tbody');
     let paginationDiv = document.getElementById('pagination');
+    let searchData = document.getElementById('search');
 
 
     let sortedUnitPriceAsc = false;
@@ -1116,6 +1123,10 @@
         fillTable(sortedProducts);
 
     }
+
+    document.querySelector("span").click();
+
+   
 
 </script>
 

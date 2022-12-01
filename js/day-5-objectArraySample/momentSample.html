@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+
+</head>
+
+<body>
+    <div>
+        <label for="">Date</label>
+        <input type="date" id="dayDate" />
+    </div>
+    <div>
+        <label>Day</label>
+        <input type="text" id="dayCount" />
+        <button onclick="add()">Add</button>
+    </div>
+
+</body>
+<script>
+
+    let dateInput = document.getElementById('dayDate');
+    let dayCountInput = document.getElementById('dayCount');
+
+
+    const add = () => {
+
+        let day = dayCountInput.value;
+
+        // let dayResult = moment(dateInput.value, 'YYYY-MM-DD').add(day, 'd').toDate();
+
+        // if(dayResult.getDay() == 6 || dayResult.getDay() == 0){
+        //     alert('Weekend!')
+        // }
+
+         let dayResult = moment(dateInput.value, 'YYYY-MM-DD').add(day, 'd').format('dddd');
+
+         if(dayResult == 'Saturday' || dayResult == 'Sunday'){
+            alert('Weekend!')
+         }
+         else{
+             console.log(dayResult);
+         }
+  
+
+    }
+
+    //Yılbaşı hangi gün?
+    var date = new Date('01-03-2023');
+    var date2 = moment('01-01-2023', 'MM-DD-YYYY').format('dddd')
+
+
+    //10 gün sonraki günün adı nedir(Sunday, Monday)
+    var result = moment().add(10, 'd').format('dddd');
+
+    //Önümüzdeki ayın ilk gününün adı nedir?
+    var result2 = moment().add(1, 'M').toString()
+
+
+    var date3 = moment('02-01-2023');
+    var date4 = moment('03-01-2023');
+
+    let status = true;
+    let counter = 0;
+
+    while (status) {
+        if (date3.format('dddd MM YYYY') == date4.format('dddd MM YYYY')) {
+            status = false;
+        }
+        else {
+            date3.add(1, 'd');
+            counter++;
+        }
+    }
+
+    console.log('Counter ', counter);
+
+
+</script>
+
+</html>
