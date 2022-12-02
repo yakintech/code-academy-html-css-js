@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./ordersData.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body style="padding: 3%">
+    <div>
+        <h1>Order</h1>
+        <h1>Top Order: <span id="topOrder"></span></h1>
+        <h1>Top Customer: <span id="topCustomer"></span></h1>
+
+    </div>
+    <table class="w3-table w3-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Ship Name</th>
+                <th>Order Date</th>
+                <th>Total</th>
+                <th>Customer Id</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</body>
+<script>
+
+    let topOrderSpan = document.getElementById('topOrder');
+    let topCustomerSpan = document.getElementById('topCustomer');
+
+    function fillTable(data) {
+
+
+
+        data.forEach(element => {
+
+            let trElement = document.createElement('tr');
+
+            let tdId = document.createElement('td');
+            tdId.innerHTML = element.id;
+
+            let tdShipName = document.createElement('td');
+            tdShipName.innerHTML = element.shipName;
+
+            let tdOrderDate = document.createElement('td');
+            tdOrderDate.innerHTML = element.orderDate.substr(0, 10);
+
+            let tdCustomerId = document.createElement('td');
+            tdCustomerId.innerHTML = element.customerId;
+
+            let tdTotal = document.createElement('td');
+
+            let total = 0;
+            element.details.forEach(item => {
+                total = total + ((item.unitPrice * item.quantity) * (1 - item.discount))
+            })
+
+            element.total = total;
+            tdTotal.innerHTML = total.toFixed(2);
+
+            trElement.appendChild(tdId);
+            trElement.appendChild(tdShipName);
+            trElement.appendChild(tdOrderDate);
+            trElement.appendChild(tdTotal);
+            trElement.appendChild(tdCustomerId);
+
+
+            document.querySelector('tbody').appendChild(trElement);
+
+
+        });
+    }
+
+    // let customersOrderData = [
+    //     {
+    //         customerId:'VAFFE',
+    //         customerTotalAmount: 75880,
+    //     },
+    //     {
+    //         customerId:'YUHH',
+    //         customerTotalAmount: 22880,
+    //     },
+    // ]
+
+
+    fillTable(orders);
+    topOrderSpan.innerHTML = Math.max(...orders.map(o => o.total));
+
+
+    let customersOrderData = [];
+    orders.forEach(element => {
+
+        let customer = customersOrderData.find(q => q.customerId == element.customerId);
+
+        if(!customer){
+            let newCustomer = {
+                customerId: element.customerId,
+                customerTotalAmount: element.total
+            };
+
+            customersOrderData.push(newCustomer);
+        }
+        else{
+            customer.customerTotalAmount = customer.customerTotalAmount + element.total;
+        }
+    });
+
+    let sortedCustomer = customersOrderData.sort((a,b) => b.customerTotalAmount - a.customerTotalAmount);
+
+    topCustomerSpan.innerHTML = sortedCustomer[0].customerId + " - " + sortedCustomer[0].customerTotalAmount.toFixed(2)
+    //sortedCustomer[0]
+
+</script>
+
+</html>
