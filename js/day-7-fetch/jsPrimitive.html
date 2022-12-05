@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+    let number = 3;
+
+    let number2 = number;
+    number2 = number2 + 10;
+
+    console.log('Number ', number); // 3
+    console.log('Number-2 ', number2); // 13
+
+
+    let user = {
+        name: "Çağatay",
+        surname: "Yıldız"
+    }
+
+
+    let user2 = user;
+    user2.name = "Tahir";
+
+    console.log('User-1 ',user.name); //Tahir
+    console.log('User-2 ',user2.name); //Tahir;
+
+
+    let cities = ["Ankara", "İstanbul"];
+
+    let cities2 = cities;
+    cities2 = ["Baku"];
+
+
+    console.log('Cities-1 length ', cities.length); // 2
+    console.log('Cities-2 length ', cities2.length); // 1
+
+
+
+
+
+
+</script>
+</html>
