@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div>
+        <label for="">Id</label>
+        <input type="text" id="id" />
+    </div>
+
+    <div>
+        <label for="">Name</label>
+        <input type="text" id="name" />
+    </div>
+    <div>
+        <label for="">Stock</label>
+        <input type="text" id="stock" />
+    </div>
+    <div>
+        <label for="">Price</label>
+        <input type="text" id="price" />
+    </div>
+    <div>
+        <button onclick="update()">Update</button>
+    </div>
+
+</body>
+<script>
+
+    let idInput = document.getElementById("id");
+    let nameInput = document.getElementById("name");
+    let stockInput = document.getElementById("stock");
+    let priceInput = document.getElementById("price");
+
+
+    function update() {
+
+        //js object
+        let product = {
+            id: idInput.value,
+            name: nameInput.value,
+            unitPrice: priceInput.value,
+            unitsInStock: stockInput.value
+        }
+
+        fetch(`https://northwind.vercel.app/api/products/${product.id}`, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(product)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('Data ', data);
+            })
+    }
+
+</script>
+
+</html>
