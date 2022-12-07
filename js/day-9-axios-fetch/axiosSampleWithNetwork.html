@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./network.js"></script>
+</head>
+
+<body>
+
+    <div>
+        <label>Name</label>
+        <input type="text" id="name" />
+    </div>
+    <div>
+        <button onclick="add()">Add</button>
+    </div>
+
+</body>
+<script>
+
+    network.getAll('/products')
+        .then(data => {
+             console.log('Data ', data);
+        })
+
+    network.getById('/categories', 5)
+        .then(data => {
+            console.log('Data ', data);
+        })
+        .catch(err => {
+            console.log('Error', err);
+        })
+
+    function add() {
+
+        let newProduct = {
+            name: document.getElementById('name').value
+        }
+
+        network.add('/products', newProduct)
+            .then(res => {
+                console.log('Res ', res);
+            })
+
+    }
+
+</script>
+
+</html>
