@@ -13,8 +13,24 @@
 <body>
 
     <div>
+        <label>Categories</label>
+        <select id="categories">
+
+        </select>
+    </div>
+    <div>
+        <label>Suppliers</label>
+        <select id="suppliers">
+
+        </select>
+    </div>
+    <div>
         <label>Name</label>
         <input type="text" id="name" />
+    </div>
+    <div>
+        <label>Unit Price</label>
+        <input type="text" id="unitPrice" />
     </div>
     <div>
         <button onclick="add()">Add</button>
@@ -23,23 +39,47 @@
 </body>
 <script>
 
-    network.getAll('/products')
+    function load() {
+
+        //load categories
+        network.getAll('/categories')
+            .then(data => {
+                data.forEach(element => {
+
+                    let option = document.createElement('option');
+                    option.innerHTML = element.name;
+                    option.value = element.id;
+
+                    document.getElementById('categories').appendChild(option);
+
+                });
+            })
+
+
+        //load suppliers
+        network.getAll('/suppliers')
         .then(data => {
-             console.log('Data ', data);
+            data.forEach(element => {
+
+                let option = document.createElement('option');
+                option.innerHTML = element.companyName;
+                option.value = element.id;
+                document.getElementById('suppliers').appendChild(option);
+
+            });
         })
 
-    network.getById('/categories', 5)
-        .then(data => {
-            console.log('Data ', data);
-        })
-        .catch(err => {
-            console.log('Error', err);
-        })
+    }
 
+
+    load();
     function add() {
 
         let newProduct = {
-            name: document.getElementById('name').value
+            name: document.getElementById('name').value,
+            unitPrice: document.getElementById('unitPrice').value,
+            categoryId: document.getElementById('categories').value,
+            supplierId: document.getElementById('suppliers').value,
         }
 
         network.add('/products', newProduct)
