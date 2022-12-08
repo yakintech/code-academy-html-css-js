@@ -71,6 +71,7 @@
 
     const liLoad = (data) => {
         ulProducts.innerHTML = "";
+        
         data.forEach(element => {
             let liElement = document.createElement('li');
             liElement.innerHTML = element.name;
