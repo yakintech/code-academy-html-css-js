@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <select id="categories" onchange="change(this)">
+
+    </select>
+
+    <ul id="products">
+
+    </ul>
+
+    <hr />
+    <div>
+        <label>Product Name: </label>
+        <input type="text" id="productName" />
+        <button onclick="update()">Update</button>
+    </div>
+</body>
+
+<script>
+
+    let ulProducts = document.getElementById('products');
+    let selectCategories = document.getElementById('categories');
+    let nameInput = document.getElementById('productName')
+
+
+    let categoryId = 2;
+    const change = (e) => {
+        categoryId = e.value;
+
+        getAllProductsByCategoryId(categoryId)
+            .then(data => liLoad(data))
+    }
+
+
+    const getAllCategories = async () => {
+        let response = [];
+
+        await fetch("https://northwind.vercel.app/api/categories")
+            .then(res => res.json())
+            .then(data => {
+                response = data;
+            });
+
+        return response;
+
+    }
+
+    const getAllProductsByCategoryId = async (id) => {
+
+        let products = [];
+
+        await fetch("https://northwind.vercel.app/api/products")
+            .then(res => res.json())
+            .then(data => {
+                products = data.filter(q => q.categoryId == id);
+            });
+
+        return products
+    }
+
+
+    const liLoad = (data) => {
+        ulProducts.innerHTML = "";
+        data.forEach(element => {
+            let liElement = document.createElement('li');
+            liElement.innerHTML = element.name;
+            liElement.id = element.id;
+            liElement.style.cursor = "pointer"
+
+            liElement.addEventListener('click', function (e) {
+                let productId = e.target.id;
+                let productName = e.target.innerHTML;
+
+                nameInput.value = productName;
+                nameInput.id = productId;
+
+            })
+
+            ulProducts.appendChild(liElement);
+        });
+
+    }
+
+
+    const loadPage = () => {
+
+
+        getAllCategories()
+            .then(data => {
+                data.forEach(element => {
+
+                    let option = document.createElement('option');
+                    option.innerHTML = element.name;
+                    option.value = element.id;
+
+                    selectCategories.appendChild(option);
+
+                });
+            })
+
+        getAllProductsByCategoryId(2)
+            .then(data => {
+                liLoad(data);
+            })
+    }
+
+
+    const update = () => {
+
+        let id = nameInput.id;
+        let name = nameInput.value;
+        axios.put(`https://northwind.vercel.app/api/products/${id}`, {
+            name: name,
+            categoryId: categoryId
+        })
+            .then(res => {
+
+                getAllProductsByCategoryId(categoryId)
+                    .then(data => {
+                        liLoad(data);
+                    })
+
+            })
+    }
+
+    loadPage();
+
+
+</script>
+
+</html>

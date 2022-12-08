@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <select id="categories" onchange="change(this)">
+
+    </select>
+
+    <ul id="products">
+
+    </ul>
+ 
+</body>
+
+<script>
+
+    let ulProducts = document.getElementById('products');
+    let selectCategories = document.getElementById('categories');
+
+
+    const change = (e) => {
+        let categoryId = e.value;
+
+        getAllProductsByCategoryId(categoryId)
+            .then(data => liLoad(data))
+    }
+
+
+    const getAllCategories = async () => {
+        let response = [];
+
+        await fetch("https://northwind.vercel.app/api/categories")
+            .then(res => res.json())
+            .then(data => {
+                response = data;
+            });
+
+        return response;
+
+    }
+
+    const getAllProductsByCategoryId = async (id) => {
+
+        let products = [];
+
+        await fetch("https://northwind.vercel.app/api/products")
+            .then(res => res.json())
+            .then(data => {
+                products = data.filter(q => q.categoryId == id);
+            });
+
+        return products
+    }
+
+
+    const liLoad = (data) => {
+        ulProducts.innerHTML = "";
+        data.forEach(element => {
+            let liElement = document.createElement('li');
+            liElement.innerHTML = element.name;
+            liElement.id = element.id;
+            liElement.style.cursor = "pointer"
+
+            liElement.addEventListener('click', function (e) {
+                let productId = e.target.id;
+
+                deleteProduct(productId)
+                    .then(() => {
+                        document.getElementById(productId).remove();
+                    })
+            })
+
+            ulProducts.appendChild(liElement);
+        });
+
+    }
+
+
+    const loadPage = () => {
+        getAllCategories()
+            .then(data => {
+                data.forEach(element => {
+
+                    let option = document.createElement('option');
+                    option.innerHTML = element.name;
+                    option.value = element.id;
+
+                    selectCategories.appendChild(option);
+
+                });
+            })
+    }
+
+    loadPage();
+
+
+    const deleteProduct = async (id) => {
+        let response = {};
+
+        await fetch(`https://northwind.vercel.app/api/products/${id}`
+            , { method: 'DELETE' })
+            .then(res => {
+                response = res;
+            })
+
+        return response;
+
+    }
+</script>
+
+</html>
