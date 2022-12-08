@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+
+</body>
+<script>
+
+    let categoryApiResult = axios.get('https://northwind.vercel.app/api/categories');
+    let productApiResult = axios.get('https://northwind.vercel.app/api/products');
+    let ordersApiResult = axios.get('https://northwind.vercel.app/api/orders');
+
+
+    const categoryManager = {
+        getAll: () => {
+            axios.get('https://northwind.vercel.app/api/categories')
+                .then(res => {
+                    return res.data;
+                })
+        }
+    }
+
+
+    function getAll() {
+        let response;
+        axios.get('https://northwind.vercel.app/api/categories')
+            .then(res => {
+                response = res.data;
+            });
+
+        return response;
+    }
+
+</script>
+
+</html>

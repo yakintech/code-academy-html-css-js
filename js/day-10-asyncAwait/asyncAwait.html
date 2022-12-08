@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <button onclick="load()">Load</button>
+    <ul>
+
+    </ul>
+</body>
+<script>
+
+
+    let categories = [];
+
+    function getCategories() {
+
+        let res = axios.get("https://northwind.vercel.app/api/categories")
+            .then(res => {
+                categories = res.data;
+            });
+
+    }
+
+    function load() {
+
+        getCategories();
+
+        setTimeout(() => {
+            categories.forEach(element => {
+
+                let liElement = document.createElement("li");
+                liElement.innerHTML = element.name;
+
+                document.querySelector('ul').appendChild(liElement);
+            });
+        }, 2000);
+
+
+    }
+
+
+
+
+
+
+
+    async function getName() {
+        return "Çağatay"
+    }
+
+
+    //console a Çağatay yaz
+
+    // getName()
+    //     .then((res) => console.log('Res ', res))
+    //     .catch(err => console.log("Err ", err))
+
+    let data = getName();
+    console.log('DAta ', data);
+    // data
+    // .then((res) => console.log('Res ', res))
+
+
+</script>
+
+</html>
