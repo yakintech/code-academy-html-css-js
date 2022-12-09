@@ -19,18 +19,32 @@
         .then(res => res.json())
         .then(data => {
             orders = data;
+
+            //find
+            let result = _.find(orders, { shipName: 'Split Rail Beer & Ale' });
+            console.log('Result ', result);
         });
 
     const orderByShipName = () => {
-       // let sortedOrders = orders.sort((a, b) => a.shipName?.localeCompare(b.shipName));
-       // console.log('Sorted orders ', sortedOrders);
+        // let sortedOrders = orders.sort((a, b) => a.shipName?.localeCompare(b.shipName));
+        // console.log('Sorted orders ', sortedOrders);
 
-        let sortedOrders = _.orderBy(orders, ['shipName'],['asc']);
+        let sortedOrders = _.orderBy(orders, ['shipName'], ['asc']);
         console.log('Sorted orders ', sortedOrders);
 
     }
 
 
+    let user = {
+        name: "ÇAğatay",
+        surname: "Yıldız"
+    }
+
+    let user2 =  _.cloneDeep(user);
+    user2.name = "Haki";
+
+    console.log('user', user.name);
+    console.log('user-2', user2.name);
 
 
 </script>
