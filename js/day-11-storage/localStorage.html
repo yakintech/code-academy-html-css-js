@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="title"></h1>
+
+    <ul id="cities">
+
+    </ul>
+    <div>
+        <input type="text" id="data" />
+        <button onclick="setData()">Set Local Storage</button>
+    </div>
+</body>
+<script>
+
+    let dataInput = document.getElementById('data');
+    let h1Title = document.getElementById('title');
+    let ulCities = document.getElementById('cities');
+
+    function setData() {
+
+        localStorage.setItem("name", dataInput.value);
+        localStorage.setItem("cities", ['İzmir', 'Baku', 'Londra', 'Petersburg']);
+
+        let webUser = {
+            name: "Çağatay",
+            surname: "Yıldız",
+            country: "Türkiye",
+            points: [5, 4, 1, 8]
+        }
+        localStorage.setItem('webuser', JSON.stringify(webUser));
+        localStorage.setItem('onlineStatus', false);
+
+
+
+
+        h1Title.innerHTML = localStorage.getItem('name');
+
+    }
+
+    function loadPage() {
+        h1Title.innerHTML = localStorage.getItem('name');
+        let cities = localStorage.getItem('cities');
+
+        let citiesArray = cities.split(',');
+
+        citiesArray.forEach(element => {
+
+            let liElement = document.createElement('li');
+            liElement.innerHTML = element;
+
+            ulCities.appendChild(liElement);
+
+        });
+
+        let webUser = JSON.parse(localStorage.getItem('webuser'))
+        console.log('webuser ', webUser);
+
+    }
+
+    loadPage();
+
+
+
+    let name = "Hakı";
+    let number = 3;
+    let onlineStatus = 'true';
+    let webUser = {
+        name: "Çağatay",
+        surname: "Yıldız",
+        country: "Türkiye",
+        points: [5, 4, 1, 8]
+    }
+    let cities = ['İzmir', 'Baku', 'Londra', 'Petersburg']
+
+   // console.log('Web User ', webUser);
+   // console.log('Web User-2 ', JSON.stringify(webUser));
+
+
+    if(true == Boolean(onlineStatus)){
+       // alert('Tahira bu soru sana');
+    }
+
+</script>
+
+</html>
